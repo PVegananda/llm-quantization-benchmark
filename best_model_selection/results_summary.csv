@@ -1,0 +1,7 @@
+Model,GPU,Composite_Score,Throughput_tok_s,BLEU,ROUGE_1,ROUGE_L,Recommendation
+GPT-2,RTX4080,0.7234,127.36,0.22,0.629,0.415,"Best overall - Highest throughput + excellent quality retention"
+GPT-2,RTX4070,0.6891,14.74,0.22,0.629,0.415,"Second choice - Good balance on consumer hardware"
+Qwen1.5-1.8B-Chat,RTX4080,0.6745,23.10,0.134,0.387,0.294,"Balanced performer - Good for edge devices"
+Qwen1.5-1.8B-Chat,RTX4070,0.6543,21.73,0.134,0.618,0.291,"Decent alternative - Good semantic preservation"
+LLaMA-2-7B-Chat,RTX4080,0.5234,9.61,0.117,0.522,0.409,"Large model - Best quality but slower"
+LLaMA-2-7B-Chat,RTX4070,0.4891,13.74,0.180,0.509,0.343,"Large model - Quality vs speed trade-off"
