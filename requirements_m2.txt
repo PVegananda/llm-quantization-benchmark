@@ -1,0 +1,11 @@
+# Requirements untuk MacBook Air M2
+# Install dengan: pip install -r requirements_m2.txt
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+nltk>=3.8.0
+rouge-score>=0.1.2
+sacrebleu>=2.3.0
+jupyter>=1.0.0
+ipykernel>=6.0.0
