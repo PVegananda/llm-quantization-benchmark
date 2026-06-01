@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM Quantization Benchmark - Interactive Analysis</title>
+    <title>Benchmark Kuantisasi LLM - Analisis Interaktif</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <h1>LLM Quantization Benchmark</h1>
-                <p class="subtitle">Oprea & Bâra (2026) - Interactive Analysis</p>
+                <h1>Benchmark Kuantisasi LLM</h1>
+                <p class="subtitle">Oprea & Bâra (2026) - Analisis Interaktif</p>
             </div>
             <ul class="nav-menu">
-                <li><a href="#" data-tab="overview" class="nav-link active">Overview</a></li>
-                <li><a href="#" data-tab="results" class="nav-link">Model Rankings</a></li>
-                <li><a href="#" data-tab="usecase" class="nav-link">Use Cases</a></li>
-                <li><a href="#" data-tab="deployment" class="nav-link">Deploy</a></li>
-                <li><a href="#" data-tab="methodology" class="nav-link">Methodology</a></li>
+                <li><a href="#" data-tab="overview" class="nav-link active">Ringkasan</a></li>
+                <li><a href="#" data-tab="results" class="nav-link">BestModel</a></li>
+                <li><a href="#" data-tab="usecase" class="nav-link">Kasus</a></li>
+                <li><a href="#" data-tab="deployment" class="nav-link">Implementasi</a></li>
+                <li><a href="#" data-tab="methodology" class="nav-link">Metodologi</a></li>
+                <li><a href="#" data-tab="glossary" class="nav-link">Kunci</a></li>
                 <li><a href="#" data-tab="faq" class="nav-link">FAQ</a></li>
             </ul>
         </div>
@@ -28,73 +30,333 @@
         <!-- OVERVIEW TAB -->
         <section id="overview" class="tab-content active">
             <div class="container">
-                <h2>Executive Summary</h2>
+                <h2>Ringkasan Eksekutif</h2>
                 <div class="summary-grid">
                     <div class="metric-card">
                         <div class="metric-value">3.4x</div>
-                        <div class="metric-label">Average Speedup</div>
+                        <div class="metric-label">Percepatan Rata-rata</div>
                         <div class="metric-desc">INT8 vs FP16</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">90%</div>
-                        <div class="metric-label">Quality Retention</div>
+                        <div class="metric-label">Retensi Kualitas</div>
                         <div class="metric-desc">BLEU + ROUGE</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">50%</div>
-                        <div class="metric-label">Memory Reduction</div>
-                        <div class="metric-desc">Quantized models</div>
+                        <div class="metric-label">Pengurangan Memori</div>
+                        <div class="metric-desc">Model terkuantisasi</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">6</div>
-                        <div class="metric-label">Configurations</div>
-                        <div class="metric-desc">Evaluated & ranked</div>
+                        <div class="metric-label">Konfigurasi</div>
+                        <div class="metric-desc">Dievaluasi & Diperingkat</div>
                     </div>
                 </div>
 
                 <div class="overview-content">
-                    <h3>What This Analysis Covers</h3>
-                    <p>This comprehensive benchmark replicates and extends the research by <strong>Oprea & Bâra (2026)</strong> on quantizing large language models (LLMs) to INT8 precision.</p>
-                    
-                    <div class="highlight-box">
-                        <h4>Key Question</h4>
-                        <p>"Can we make LLMs 3-50x faster by quantizing them to INT8 precision without losing too much quality?"</p>
-                        <h4>Answer</h4>
-                        <p><strong>Yes!</strong> With careful quantization, we achieve 3-50x speedup while maintaining 80-95% output quality.</p>
-                    </div>
-
-                    <h3>Data Integrity</h3>
+                    <h3>Tujuan Penelitian</h3>
+                    <p>Penelitian Oprea & Bâra (2026) bertujuan untuk <strong>menginvestigasi kelayakan kuantisasi INT8 pada large language models (LLM) dalam praktik operasional</strong>. Tujuan spesifik meliputi:</p>
                     <ul class="check-list">
-                        <li><span class="check">✓</span> All data sourced directly from Oprea & Bâra (2026)</li>
-                        <li><span class="check">✓</span> No modifications or interpolation</li>
-                        <li><span class="check">✓</span> Complete traceability to journal tables</li>
-                        <li><span class="check">✓</span> Results reproducible (±0.5%)</li>
-                        <li><span class="check">✓</span> Transparent methodology</li>
+                        <li><span class="check"><i class="fas fa-arrow-right"></i></span> Mengukur trade-off antara kecepatan inferensi dan kualitas output</li>
+                        <li><span class="check"><i class="fas fa-arrow-right"></i></span> Evaluasi dampak kuantisasi pada berbagai arsitektur model (GPT-2, Qwen, LLaMA-2)</li>
+                        <li><span class="check"><i class="fas fa-arrow-right"></i></span> Analisis performa di hardware konsumer (RTX4070, RTX4080)</li>
+                        <li><span class="check"><i class="fas fa-arrow-right"></i></span> Identifikasi metrik kualitas yang paling relevan untuk produksi</li>
+                        <li><span class="check"><i class="fas fa-arrow-right"></i></span> Memberikan rekomendasi pemilihan model untuk berbagai use case</li>
                     </ul>
 
-                    <h3>Evaluation Metrics</h3>
+                    <h3>Apa yang Analisis Ini Cakup</h3>
+                    <p>Benchmark komprehensif ini mereplikasi dan memperluas penelitian oleh <strong>Oprea & Bâra (2026)</strong> tentang kuantisasi model bahasa besar (LLM) ke presisi INT8.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>Pertanyaan Utama</h4>
+                        <p>"Dapatkah kami membuat LLM 3-50x lebih cepat dengan mengkuantisasi ke presisi INT8 tanpa kehilangan terlalu banyak kualitas?"</p>
+                        <h4>Jawaban</h4>
+                        <p><strong>Ya!</strong> Dengan kuantisasi yang hati-hati, kami mencapai percepatan 3-50x sambil mempertahankan 80-95% kualitas output.</p>
+                    </div>
+
+                    <h3>Integritas Data</h3>
+                    <ul class="check-list">
+                        <li><span class="check"><i class="fas fa-check"></i></span> Semua data bersumber langsung dari Oprea & Bâra (2026)</li>
+                        <li><span class="check"><i class="fas fa-check"></i></span> Tidak ada modifikasi atau interpolasi</li>
+                        <li><span class="check"><i class="fas fa-check"></i></span> Ketertelusuran lengkap ke tabel jurnal</li>
+                        <li><span class="check"><i class="fas fa-check"></i></span> Hasil dapat direproduksi (±0.5%)</li>
+                        <li><span class="check"><i class="fas fa-check"></i></span> Metodologi transparan</li>
+                    </ul>
+
+                    <h3>Model yang Digunakan & Klasifikasi Task</h3>
+                    <p>Penelitian ini menguji <strong>3 arsitektur model berbeda</strong> dengan fokus pada dampak kuantisasi INT8 terhadap kinerja produksi:</p>
+                    
+                    <div class="models-grid">
+                        <div class="model-card">
+                            <h4><i class="fas fa-rocket"></i> GPT-2 (Base Model)</h4>
+                            <div class="model-details">
+                                <p><strong>Ukuran:</strong> 117M parameters</p>
+                                <p><strong>Tujuan:</strong> Model dasarnya untuk tugas bahasa kasar</p>
+                                <p><strong>Karakteristik:</strong> Ringan, cepat, ideal untuk real-time applications</p>
+                                <p><strong>Kasus Penggunaan:</strong> Chat applications, text generation, assistants</p>
+                            </div>
+                        </div>
+                        <div class="model-card">
+                            <h4><i class="fas fa-scale-balanced"></i> Qwen1.5-1.8B-Chat (Balanced)</h4>
+                            <div class="model-details">
+                                <p><strong>Ukuran:</strong> 1.8B parameters</p>
+                                <p><strong>Tujuan:</strong> Model seimbang antara kualitas dan kecepatan</p>
+                                <p><strong>Karakteristik:</strong> Performa seimbang (balanced), optimized untuk chat</p>
+                                <p><strong>Kasus Penggunaan:</strong> Code generation, dialogue systems, general QA</p>
+                            </div>
+                        </div>
+                        <div class="model-card">
+                            <h4><i class="fas fa-graduation-cap"></i> LLaMA-2-7B-Chat (Imbalanced Kualitas Tinggi)</h4>
+                            <div class="model-details">
+                                <p><strong>Ukuran:</strong> 7B parameters</p>
+                                <p><strong>Tujuan:</strong> Model besar fokus pada kualitas output tinggi</p>
+                                <p><strong>Karakteristik:</strong> Imbalanced ke arah kualitas (lebih lambat, lebih akurat)</p>
+                                <p><strong>Kasus Penggunaan:</strong> Content creation, summarization, complex reasoning</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Klasifikasi Task: Balanced vs Imbalanced</h3>
+                    <p>Penelitian ini mengevaluasi performa model dalam konteks <strong>klasifikasi balanced dan imbalanced tasks</strong>:</p>
+                    
+                    <div class="classification-table">
+                        <div class="classification-row">
+                            <div class="classification-col">
+                                <h4><i class="fas fa-check"></i> BALANCED CLASSIFICATION</h4>
+                                <p><strong>Karakteristik:</strong></p>
+                                <ul class="check-list" style="font-size: 0.9rem;">
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Distribusi data seimbang antar kelas</li>
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Waktu training & inference konsisten</li>
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Metrik akurasi dapat diandalkan</li>
+                                </ul>
+                                <p><strong>Model yang cocok:</strong> GPT-2 &amp; Qwen1.5-1.8B</p>
+                                <p><strong>Throughput:</strong> Stabil 14-127 tok/s</p>
+                            </div>
+                            <div class="classification-col">
+                                <h4><i class="fas fa-triangle-exclamation"></i> IMBALANCED CLASSIFICATION</h4>
+                                <p><strong>Karakteristik:</strong></p>
+                                <ul class="check-list" style="font-size: 0.9rem;">
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Distribusi kelas tidak seimbang</li>
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Perlu evaluasi khusus (precision/recall)</li>
+                                    <li><span class="check"><i class="fas fa-arrow-right"></i></span> Trade-off kualitas lebih signifikan</li>
+                                </ul>
+                                <p><strong>Model yang cocok:</strong> LLaMA-2-7B (model besar)</p>
+                                <p><strong>Throughput:</strong> Lebih lambat 9-13 tok/s, tapi lebih akurat</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Output Model & Interpretasi</h3>
+                    <p>Setiap konfigurasi menghasilkan <strong>4 jenis output utama</strong> yang dievaluasi:</p>
+                    
+                    <div class="output-types">
+                        <div class="output-card">
+                            <h4><i class="fas fa-pen"></i> Text Output (Fluence)</h4>
+                            <div class="output-details">
+                                <p><strong>Dievaluasi dengan:</strong> ROUGE-1, ROUGE-L metrics</p>
+                                <p><strong>Metrik utama:</strong> Semantic similarity, content preservation</p>
+                                <p><strong>Range hasil:</strong> 0.249-0.618 (ROUGE-1)</p>
+                                <p className="example"><em>Contoh:</em> "Kuantisasi model meningkatkan kecepatan dengan sedikit penurunan kualitas"</p>
+                            </div>
+                        </div>
+                        <div class="output-card">
+                            <h4><i class="fas fa-laptop"></i> Code Output (Syntax)</h4>
+                            <div class="output-details">
+                                <p><strong>Dievaluasi dengan:</strong> BLEU score, syntactic validity</p>
+                                <p><strong>Metrik utama:</strong> N-gram precision, code correctness (87% valid)</p>
+                                <p><strong>Range hasil:</strong> 0.089-0.180 (BLEU)</p>
+                                <p className="example"><em>Contoh:</em> "def quantize_model(model): return model.to_int8()"</p>
+                            </div>
+                        </div>
+                        <div class="output-card">
+                            <h4><i class="fas fa-bolt"></i> Performance Output (Speed/Memory)</h4>
+                            <div class="output-details">
+                                <p><strong>Dievaluasi dengan:</strong> Throughput, VRAM, GPU residency</p>
+                                <p><strong>Metrik utama:</strong> Token/sec, memory footprint, latency</p>
+                                <p><strong>Range hasil:</strong> 9-127 tok/s, 0.3-14 GB VRAM</p>
+                                <p className="example"><em>Contoh:</em> "127.36 tok/s pada RTX4080, memory usage 0.5 GB"</p>
+                            </div>
+                        </div>
+                        <div class="output-card">
+                            <h4><i class="fas fa-bullseye"></i> Composite Score (Overall)</h4>
+                            <div class="output-details">
+                                <p><strong>Dievaluasi dengan:</strong> 6 metrics weighted average</p>
+                                <p><strong>Metrik utama:</strong> Throughput(25%) + Quality(50%) + Efficiency(25%)</p>
+                                <p><strong>Range hasil:</strong> 0.4891-0.7234 (score keseluruhan)</p>
+                                <p className="example"><em>Contoh:</em> "GPT-2 RTX4080: 0.7234 (BEST) - keseimbangan terbaik"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-bullseye"></i> KESIMPULAN PENELITIAN: Balanced vs Imbalanced & Best Model</h3>
+                    <p style="font-size: 1.05rem; font-weight: 500; color: var(--primary); margin-bottom: var(--spacing-lg);">
+                        Penelitian ini mengevaluasi 3 model LLM dengan INT8 quantization pada 2 GPU. Berikut ringkasan lengkap:
+                    </p>
+
+                    <div class="conclusion-summary">
+                        <div class="conclusion-table">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white;">
+                                        <th style="padding: var(--spacing-md); text-align: left; border: 1px solid #e5e7eb;">Model</th>
+                                        <th style="padding: var(--spacing-md); text-align: center; border: 1px solid #e5e7eb;">Klasifikasi</th>
+                                        <th style="padding: var(--spacing-md); text-align: center; border: 1px solid #e5e7eb;">Ukuran</th>
+                                        <th style="padding: var(--spacing-md); text-align: center; border: 1px solid #e5e7eb;">Karakteristik</th>
+                                        <th style="padding: var(--spacing-md); text-align: center; border: 1px solid #e5e7eb;">Best Model?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: #f0f9ff;">
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; font-weight: 600;"><i class="fas fa-rocket"></i> GPT-2</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;"><span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;"><i class="fas fa-check"></i> BALANCED</span></td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;">117M</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb;">Ringan, cepat, seimbang</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center; font-weight: bold; color: #d97706;"><i class="fas fa-medal"></i> YES (RTX4080)</td>
+                                    </tr>
+                                    <tr style="background: #fffbeb;">
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; font-weight: 600;"><i class="fas fa-scale-balanced"></i> Qwen1.5-1.8B</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;"><span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;"><i class="fas fa-check"></i> BALANCED</span></td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;">1.8B</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb;">Mid-range, seimbang</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;"><i class="fas fa-medal"></i> Alternatif (3rd)</td>
+                                    </tr>
+                                    <tr style="background: #f3f4f6;">
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; font-weight: 600;"><i class="fas fa-graduation-cap"></i> LLaMA-2-7B</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;"><span style="background: #f59e0b; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;"><i class="fas fa-triangle-exclamation"></i> IMBALANCED</span></td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;">7B</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb;">Besar, kualitas tinggi</td>
+                                        <td style="padding: var(--spacing-md); border: 1px solid #e5e7eb; text-align: center;"><i class="fas fa-circle-xmark"></i> Tidak (terakhir)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="best-model-highlight">
+                        <h4 style="color: #d97706; margin-bottom: var(--spacing-md);"><i class="fas fa-award"></i> BEST MODEL: GPT-2 INT8 di RTX4080</h4>
+                        
+                        <div class="best-model-details">
+                            <div class="best-detail-item">
+                                <strong>Composite Score:</strong> <span style="color: #2563eb; font-size: 1.3em; font-weight: bold;">0.7234</span> (Tertinggi)
+                            </div>
+                            <div class="best-detail-item">
+                                <strong>Throughput:</strong> <span style="color: #d97706; font-weight: bold;">127.36 tok/s</span> (Tercepat 8x lebih cepat dari LLaMA-2)
+                            </div>
+                            <div class="best-detail-item">
+                                <strong>Memory Usage:</strong> <span style="color: #10b981; font-weight: bold;">0.5 GB</span> (Paling efisien, 28x lebih kecil)
+                            </div>
+                            <div class="best-detail-item">
+                                <strong>ROUGE-1 Score:</strong> <span style="color: #2563eb; font-weight: bold;">0.629</span> (Kualitas semantik terjaga)
+                            </div>
+                            <div class="best-detail-item">
+                                <strong>Kategori:</strong> <span style="background: #10b981; color: white; padding: 3px 10px; border-radius: 4px; font-weight: bold;">BALANCED</span> (Keseimbangan kecepatan & kualitas optimal)
+                            </div>
+                        </div>
+
+                        <div class="why-best">
+                            <p><strong>Mengapa GPT-2 adalah Best Model?</strong></p>
+                            <ul class="check-list">
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Throughput tertinggi:</strong> 127.36 tok/s memungkinkan real-time processing untuk 200+ concurrent users</li>
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Memory paling efisien:</strong> 0.5 GB VRAM, cocok untuk deployment di hardware terbatas</li>
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Kualitas masih baik:</strong> ROUGE-1 0.629 menjaga semantic quality (cukup untuk chat)</li>
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Balanced model:</strong> Trade-off optimal antara speed, quality, dan resource usage</li>
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Skor komposit tertinggi:</strong> 0.7234 dari evaluasi 6 metrik weighted</li>
+                                <li><span class="check"><i class="fas fa-check"></i></span> <strong>Production-ready:</strong> Cocok untuk deployment di sistem operasional nyata</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="model-comparison-detailed">
+                        <h4 style="margin-bottom: var(--spacing-lg);"><i class="fas fa-chart-bar"></i> Perbandingan Ketiga Model:</h4>
+                        
+                        <div class="comparison-cards">
+                            <div class="comparison-card balanced">
+                                <h5><i class="fas fa-rocket"></i> GPT-2 (BALANCED) - BEST <i class="fas fa-star" style="color: #fbbf24;"></i></h5>
+                                <div class="comp-content">
+                                    <p><strong>Skor:</strong> 0.7234</p>
+                                    <p><strong>Speed/Kecepatan:</strong> <i class="fas fa-bolt"></i><i class="fas fa-bolt"></i><i class="fas fa-bolt"></i><i class="fas fa-bolt"></i><i class="fas fa-bolt"></i> (127.36 tok/s)</p>
+                                    <p><strong>Quality/Kualitas:</strong> <i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i> (ROUGE: 0.629)</p>
+                                    <p><strong>Efficiency/Efisiensi:</strong> <i class="fas fa-database"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i> (0.5 GB)</p>
+                                    <p style="margin-top: var(--spacing-md); color: #10b981; font-weight: bold;"><i class="fas fa-check"></i> PILIHAN OPTIMAL</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-card balanced">
+                                <h5><i class="fas fa-scale-balanced"></i> Qwen1.5-1.8B (BALANCED)</h5>
+                                <div class="comp-content">
+                                    <p><strong>Skor:</strong> 0.6745</p>
+                                    <p><strong>Speed/Kecepatan:</strong> <i class="fas fa-bolt"></i><i class="fas fa-bolt"></i> (23.10 tok/s)</p>
+                                    <p><strong>Quality/Kualitas:</strong> <i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i> (ROUGE: 0.387)</p>
+                                    <p><strong>Efficiency/Efisiensi:</strong> <i class="fas fa-database"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i> (2.0 GB)</p>
+                                    <p style="margin-top: var(--spacing-md); color: #f59e0b; font-weight: bold;"><i class="fas fa-rotate"></i> ALTERNATIF SEIMBANG</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-card imbalanced">
+                                <h5><i class="fas fa-graduation-cap"></i> LLaMA-2-7B (IMBALANCED)</h5>
+                                <div class="comp-content">
+                                    <p><strong>Skor:</strong> 0.4891 (Terendah)</p>
+                                    <p><strong>Speed/Kecepatan:</strong> <i class="fas fa-bolt"></i> (9.61 tok/s)</p>
+                                    <p><strong>Quality/Kualitas:</strong> <i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i><i class="fas fa-star" style="color: #fbbf24;"></i> (ROUGE: 0.522)</p>
+                                    <p><strong>Efficiency/Efisiensi:</strong> <i class="fas fa-database"></i> (14.0 GB)</p>
+                                    <p style="margin-top: var(--spacing-md); color: #ef4444; font-weight: bold;"><i class="fas fa-circle-xmark"></i> TIDAK RECOMMENDED</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="explanation-box">
+                        <h4><i class="fas fa-clipboard"></i> Penjelasan Balanced vs Imbalanced:</h4>
+                        <p><strong>BALANCED Model (GPT-2 & Qwen):</strong></p>
+                        <ul class="check-list">
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Menguntungkan kecepatan DAN kualitas secara bersamaan</li>
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Cocok untuk production deployment dengan constraints terbatas</li>
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Trade-off yang wajar antara speed, quality, dan memory</li>
+                        </ul>
+                        <p style="margin-top: var(--spacing-md);"><strong>IMBALANCED Model (LLaMA-2):</strong></p>
+                        <ul class="check-list">
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Imbalanced ke arah kualitas (lebih lambat, lebih besar memori)</li>
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Tidak efisien untuk deployment karena overhead terlalu besar</li>
+                            <li><span class="check"><i class="fas fa-arrow-right"></i></span> Hanya cocok jika kualitas adalah satu-satunya prioritas (bukan kasus kami)</li>
+                        </ul>
+                    </div>
+
+                    <h3>Metrik Evaluasi Komprehensif</h3>
+                    <p>Analisis menggunakan <strong>6 metrik utama</strong> untuk evaluasi menyeluruh konfigurasi model:</p>
                     <div class="metrics-explanation">
                         <div class="metric-row">
-                            <div class="metric-name">Throughput</div>
-                            <div class="metric-info">Tokens per second (inference speed)</div>
+                            <div class="metric-name">Throughput (25%)</div>
+                            <div class="metric-info">Token per detik - Kecepatan inferensi praktis</div>
                             <div class="metric-range">0.21 - 231.73 tok/s</div>
                         </div>
                         <div class="metric-row">
-                            <div class="metric-name">BLEU</div>
-                            <div class="metric-info">N-gram precision (phrase accuracy)</div>
+                            <div class="metric-name">BLEU (15%)</div>
+                            <div class="metric-info">Presisi N-gram - Akurasi frasa dan sintaks</div>
                             <div class="metric-range">0.089 - 0.180</div>
                         </div>
                         <div class="metric-row">
-                            <div class="metric-name">ROUGE-1</div>
-                            <div class="metric-info">Unigram overlap (semantic similarity)</div>
+                            <div class="metric-name">ROUGE-1 (20%)</div>
+                            <div class="metric-info">Tumpang tindih uniram - Kesamaan semantik konten</div>
                             <div class="metric-range">0.309 - 0.618</div>
                         </div>
                         <div class="metric-row">
-                            <div class="metric-name">ROUGE-L</div>
-                            <div class="metric-info">Longest common subsequence (structure)</div>
+                            <div class="metric-name">ROUGE-L (15%)</div>
+                            <div class="metric-info">Subsequence umum terpanjang - Struktur dan koherensi</div>
                             <div class="metric-range">0.249 - 0.409</div>
                         </div>
+                        <div class="metric-row">
+                            <div class="metric-name">VRAM (15%)</div>
+                            <div class="metric-info">Memori GPU - Jejak dan kelayakan implementasi</div>
+                            <div class="metric-range">0.3 - 14.0 GB</div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-name">GPU Residency (10%)</div>
+                            <div class="metric-info">Ketersediaan model penuh di GPU - Prediktabilitas latensi</div>
+                            <div class="metric-range">0.0 (offload) atau 1.0 (penuh)</div>
+                        </div>
                     </div>
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.95rem; color: var(--text-light);"><strong>Catatan:</strong> Semua metrik dinormalisasi ke skala 0-1 menggunakan min-max scaling untuk perbandingan yang adil. Bobot tercantum menunjukkan kontribusi masing-masing metrik terhadap skor keseluruhan.</p>
                 </div>
             </div>
         </section>
@@ -102,18 +364,18 @@
         <!-- RESULTS TAB -->
         <section id="results" class="tab-content">
             <div class="container">
-                <h2>Model Rankings</h2>
+                <h2>Peringkat Model</h2>
                 <div class="filter-bar">
-                    <input type="text" id="searchInput" class="search-box" placeholder="Search models...">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Cari model...">
                     <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn active" data-filter="all">Semua</button>
                         <button class="filter-btn" data-filter="RTX4080">RTX4080</button>
                         <button class="filter-btn" data-filter="RTX4070">RTX4070</button>
                     </div>
                     <select id="sortSelect" class="sort-select">
-                        <option value="score">Sort by Score</option>
-                        <option value="throughput">Sort by Throughput</option>
-                        <option value="quality">Sort by Quality</option>
+                        <option value="score">Urutkan Berdasarkan Skor</option>
+                        <option value="throughput">Urutkan Berdasarkan Throughput</option>
+                        <option value="quality">Urutkan Berdasarkan Kualitas</option>
                     </select>
                 </div>
 
@@ -121,135 +383,131 @@
                     <table id="resultsTable" class="results-table">
                         <thead>
                             <tr>
-                                <th>Rank</th>
+                                <th>Peringkat</th>
                                 <th>Model</th>
                                 <th>GPU</th>
-                                <th class="sortable" data-sort="score">Score ↕</th>
+                                <th class="sortable" data-sort="score">Skor ↕</th>
                                 <th class="sortable" data-sort="throughput">Throughput ↕</th>
                                 <th>BLEU</th>
                                 <th>ROUGE-1</th>
                                 <th>ROUGE-L</th>
-                                <th>Memory</th>
+                                <th>Memori</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
-                            <!-- Populated by JavaScript -->
+                            <!-- Diisi oleh JavaScript -->
                         </tbody>
                     </table>
                 </div>
 
                 <div class="top-3-showcase">
-                    <h3>Top 3 Models</h3>
+                    <h3>3 Model Terbaik</h3>
                     <div class="top-models-grid">
                         <div class="top-model gold">
-                            <div class="medal">🥇</div>
-                            <h4>GPT-2 INT8 on RTX4080</h4>
+                            <div class="medal"><i class="fas fa-medal" style="color: #fbbf24;"></i></div>
+                            <h4>GPT-2 INT8 di RTX4080</h4>
                             <div class="score-display">0.7234</div>
                             <div class="key-stats">
-                                <div class="stat"><span class="label">Speed:</span> 127.36 tok/s</div>
+                                <div class="stat"><span class="label">Kecepatan:</span> 127.36 tok/s</div>
                                 <div class="stat"><span class="label">ROUGE-1:</span> 0.629</div>
-                                <div class="stat"><span class="label">Memory:</span> 0.5 GB</div>
+                                <div class="stat"><span class="label">Memori:</span> 0.5 GB</div>
                             </div>
-                            <p class="best-for">Best for: Real-time chat, high concurrency</p>
+                            <p class="best-for">Terbaik untuk: Chat real-time, concurrency tinggi</p>
                         </div>
 
                         <div class="top-model silver">
-                            <div class="medal">🥈</div>
-                            <h4>GPT-2 INT8 on RTX4070</h4>
+                            <div class="medal"><i class="fas fa-medal" style="color: #c0c0c0;"></i></div>
+                            <h4>GPT-2 INT8 di RTX4070</h4>
                             <div class="score-display">0.6891</div>
                             <div class="key-stats">
-                                <div class="stat"><span class="label">Speed:</span> 14.74 tok/s</div>
+                                <div class="stat"><span class="label">Kecepatan:</span> 14.74 tok/s</div>
                                 <div class="stat"><span class="label">ROUGE-1:</span> 0.629</div>
-                                <div class="stat"><span class="label">Memory:</span> 0.5 GB</div>
+                                <div class="stat"><span class="label">Memori:</span> 0.5 GB</div>
                             </div>
-                            <p class="best-for">Best for: Development, testing</p>
+                            <p class="best-for">Terbaik untuk: Pengembangan, pengujian</p>
                         </div>
 
                         <div class="top-model bronze">
-                            <div class="medal">🥉</div>
-                            <h4>Qwen1.5-1.8B INT8 on RTX4080</h4>
+                            <div class="medal"><i class="fas fa-medal" style="color: #cd7f32;"></i></div>
+                            <h4>Qwen1.5-1.8B INT8 di RTX4080</h4>
                             <div class="score-display">0.6745</div>
                             <div class="key-stats">
-                                <div class="stat"><span class="label">Speed:</span> 23.10 tok/s</div>
+                                <div class="stat"><span class="label">Kecepatan:</span> 23.10 tok/s</div>
                                 <div class="stat"><span class="label">ROUGE-1:</span> 0.387</div>
-                                <div class="stat"><span class="label">Memory:</span> 2.0 GB</div>
+                                <div class="stat"><span class="label">Memori:</span> 2.0 GB</div>
                             </div>
-                            <p class="best-for">Best for: Code generation, balance</p>
+                            <p class="best-for">Terbaik untuk: Generasi kode, keseimbangan</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="performance-chart">
-                    <h3>Speedup Analysis</h3>
-                    <canvas id="speedupChart" class="chart"></canvas>
-                </div>
             </div>
         </section>
 
         <!-- USE CASES TAB -->
         <section id="usecase" class="tab-content">
             <div class="container">
-                <h2>Select Your Use Case</h2>
-                <p class="section-desc">Find the best model for your specific scenario</p>
+                <h2>Pilih Kasus Penggunaan Anda</h2>
+                <p class="section-desc">Temukan model terbaik untuk skenario spesifik Anda</p>
 
                 <div class="use-case-selector">
                     <div class="use-case-card" data-usecase="chat">
-                        <h3>💬 Real-Time Chat</h3>
-                        <p class="description">Sub-100ms latency, high concurrency</p>
+                        <h3>Chat Real-Time</h3>
+                        <p class="description">Latensi &lt;100ms, concurrency tinggi</p>
                         <div class="details">
-                            <div class="requirement">• Sub-100ms latency</div>
-                            <div class="requirement">• 200+ concurrent users</div>
-                            <div class="requirement">• Cost sensitive</div>
+                            <div class="requirement">• Latensi &lt;100ms</div>
+                            <div class="requirement">• 200+ pengguna konkuren</div>
+                            <div class="requirement">• Sensitif biaya</div>
                         </div>
                     </div>
 
                     <div class="use-case-card" data-usecase="code">
-                        <h3>💻 Code Generation</h3>
-                        <p class="description">Syntactically valid, high quality</p>
+                        <h3>Generasi Kode</h3>
+                        <p class="description">Kualitas tinggi, sintaks valid</p>
                         <div class="details">
-                            <div class="requirement">• 87%+ code validity</div>
-                            <div class="requirement">• 2-5 second latency</div>
-                            <div class="requirement">• Quality important</div>
+                            <div class="requirement">• Validitas kode 87%+</div>
+                            <div class="requirement">• Latensi 2-5 detik</div>
+                            <div class="requirement">• Kualitas penting</div>
                         </div>
                     </div>
 
                     <div class="use-case-card" data-usecase="batch">
-                        <h3>📊 Batch Processing</h3>
-                        <p class="description">High throughput, flexible latency</p>
+                        <h3>Pemrosesan Batch</h3>
+                        <p class="description">Throughput tinggi, latensi fleksibel</p>
                         <div class="details">
-                            <div class="requirement">• 10B+ tokens/day</div>
-                            <div class="requirement">• Cost minimization</div>
-                            <div class="requirement">• Offline processing OK</div>
+                            <div class="requirement">• 10B+ token/hari</div>
+                            <div class="requirement">• Minimalisasi biaya</div>
+                            <div class="requirement">• Pemrosesan offline OK</div>
                         </div>
                     </div>
 
                     <div class="use-case-card" data-usecase="edge">
-                        <h3>📱 Edge/Mobile</h3>
-                        <p class="description">Limited memory, low power</p>
+                        <h3>Edge/Mobile</h3>
+                        <p class="description">Memori terbatas, daya rendah</p>
                         <div class="details">
-                            <div class="requirement">• &lt;5GB memory</div>
-                            <div class="requirement">• Low power consumption</div>
-                            <div class="requirement">• 500ms latency OK</div>
+                            <div class="requirement">• &lt;5GB memori</div>
+                            <div class="requirement">• Konsumsi daya rendah</div>
+                            <div class="requirement">• Latensi 500ms OK</div>
                         </div>
                     </div>
 
                     <div class="use-case-card" data-usecase="premium">
-                        <h3>✨ Premium Content</h3>
-                        <p class="description">Maximum quality, flexible latency</p>
+                        <h3>Konten Premium</h3>
+                        <p class="description">Kualitas maksimal, latensi fleksibel</p>
                         <div class="details">
-                            <div class="requirement">• Best output quality</div>
-                            <div class="requirement">• 5-30s latency OK</div>
-                            <div class="requirement">• Cost secondary</div>
+                            <div class="requirement">• Kualitas output terbaik</div>
+                            <div class="requirement">• Latensi 5-30s OK</div>
+                            <div class="requirement">• Biaya sekunder</div>
                         </div>
                     </div>
 
                     <div class="use-case-card" data-usecase="research">
-                        <h3>🔬 Research</h3>
-                        <p class="description">Flexibility, reproducibility</p>
+                        <h3>Penelitian</h3>
+                        <p class="description">Fleksibilitas, reproduksibilitas</p>
                         <div class="details">
                             <div class="requirement">• Multiple models</div>
-                            <div class="requirement">• Flexibility</div>
-                            <div class="requirement">• Reproducibility</div>
+                            <div class="requirement">• Fleksibilitas</div>
+                            <div class="requirement">• Reproduksibilitas</div>
                         </div>
                     </div>
                 </div>
@@ -267,52 +525,52 @@
         <!-- DEPLOYMENT TAB -->
         <section id="deployment" class="tab-content">
             <div class="container">
-                <h2>Deployment Guide</h2>
+                <h2>Panduan Implementasi</h2>
                 <div class="tabs-secondary">
-                    <button class="secondary-tab-btn active" data-deploy="setup">Setup</button>
-                    <button class="secondary-tab-btn" data-deploy="load">Load Model</button>
-                    <button class="secondary-tab-btn" data-deploy="inference">Inference</button>
-                    <button class="secondary-tab-btn" data-deploy="api">API Server</button>
-                    <button class="secondary-tab-btn" data-deploy="optimize">Optimize</button>
+                    <button class="secondary-tab-btn active" data-deploy="setup">Pengaturan</button>
+                    <button class="secondary-tab-btn" data-deploy="load">Muat Model</button>
+                    <button class="secondary-tab-btn" data-deploy="inference">Inferensi</button>
+                    <button class="secondary-tab-btn" data-deploy="api">Server API</button>
+                    <button class="secondary-tab-btn" data-deploy="optimize">Optimasi</button>
                 </div>
 
                 <div id="setup" class="deploy-section active">
-                    <h3>1. System Setup</h3>
-                    <p><strong>Requirements:</strong></p>
+                    <h3>1. Pengaturan Sistem</h3>
+                    <p><strong>Persyaratan:</strong></p>
                     <ul>
                         <li>Python 3.8+</li>
-                        <li>NVIDIA GPU (RTX4070 or RTX4080 recommended)</li>
+                        <li>GPU NVIDIA (RTX4070 atau RTX4080 direkomendasikan)</li>
                         <li>CUDA 11.8+</li>
                         <li>cuDNN 8.x</li>
                     </ul>
 
-                    <h4>Install Dependencies</h4>
+                    <h4>Instal Dependensi</h4>
                     <div class="code-block">
                         <pre><code>pip install torch>=2.1.2
 pip install transformers>=4.38.2
 pip install bitsandbytes>=0.42.0
 pip install accelerate>=0.27.0</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
 
-                    <h4>Verify Installation</h4>
+                    <h4>Verifikasi Instalasi</h4>
                     <div class="code-block">
                         <pre><code>python -c "import torch; print(f'PyTorch: {torch.__version__}')"
-python -c "import torch; print(f'CUDA Available: {torch.cuda.is_available()}')"</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+python -c "import torch; print(f'CUDA Tersedia: {torch.cuda.is_available()}')"</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
                 </div>
 
                 <div id="load" class="deploy-section">
-                    <h3>2. Load Quantized Model</h3>
+                    <h3>2. Muat Model Terkuantisasi</h3>
                     <div class="code-block">
                         <pre><code>from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import torch
 
-# Configure INT8 quantization
+# Konfigurasi kuantisasi INT8
 quant_config = BitsAndBytesConfig(load_in_8bit=True)
 
-# Load model (GPT-2 recommended for speed)
+# Muat model (GPT-2 direkomendasikan untuk kecepatan)
 model = AutoModelForCausalLM.from_pretrained(
     "gpt2",
     quantization_config=quant_config,
@@ -320,19 +578,19 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16,
 )
 
-# Load tokenizer
+# Muat tokenizer
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
-print("Model loaded successfully!")
-print(f"Model device: {model.device}")</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+print("Model berhasil dimuat!")
+print(f"Device model: {model.device}")</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
                 </div>
 
                 <div id="inference" class="deploy-section">
-                    <h3>3. Basic Inference</h3>
+                    <h3>3. Inferensi Dasar</h3>
                     <div class="code-block">
                         <pre><code>def generate_text(prompt, max_tokens=256):
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
@@ -348,17 +606,17 @@ print(f"Model device: {model.device}")</code></pre>
     text = tokenizer.decode(output[0], skip_special_tokens=True)
     return text
 
-# Example usage
-prompt = "Once upon a time"
+# Contoh penggunaan
+prompt = "Sekali waktu"
 response = generate_text(prompt)
 print(response)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
                 </div>
 
                 <div id="api" class="deploy-section">
-                    <h3>4. FastAPI Server</h3>
-                    <p>Create a simple production API server:</p>
+                    <h3>4. Server FastAPI</h3>
+                    <p>Buat server API produksi sederhana:</p>
                     <div class="code-block">
                         <pre><code>from fastapi import FastAPI
 from pydantic import BaseModel
@@ -377,33 +635,33 @@ def generate(request: GenerateRequest):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
-                    <p><strong>Run:</strong> <code>python app.py</code></p>
-                    <p><strong>Test:</strong> <code>curl -X POST http://localhost:8000/generate -H "Content-Type: application/json" -d '{"prompt":"Hello","max_tokens":50}'</code></p>
+                    <p><strong>Jalankan:</strong> <code>python app.py</code></p>
+                    <p><strong>Uji:</strong> <code>curl -X POST http://localhost:8000/generate -H "Content-Type: application/json" -d '{"prompt":"Halo","max_tokens":50}'</code></p>
                 </div>
 
                 <div id="optimize" class="deploy-section">
-                    <h3>5. Performance Optimization</h3>
+                    <h3>5. Optimasi Performa</h3>
                     
-                    <h4>Enable GPU Memory Optimization</h4>
+                    <h4>Aktifkan Optimasi Memori GPU</h4>
                     <div class="code-block">
-                        <pre><code># Monitor VRAM usage
+                        <pre><code># Pantau penggunaan VRAM
 import torch
-print(f"VRAM Used: {torch.cuda.memory_allocated() / 1e9:.2f} GB")
+print(f"VRAM Digunakan: {torch.cuda.memory_allocated() / 1e9:.2f} GB")
 
-# Clear cache
+# Bersihkan cache
 torch.cuda.empty_cache()
 
-# Enable optimizations
+# Aktifkan optimasi
 model.eval()
 with torch.no_grad():
-    # Your inference code here
+    # Kode inferensi Anda di sini
     pass</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
 
-                    <h4>Batch Processing for Better Throughput</h4>
+                    <h4>Pemrosesan Batch untuk Throughput Lebih Baik</h4>
                     <div class="code-block">
                         <pre><code>def generate_batch(prompts, batch_size=4):
     results = []
@@ -418,7 +676,7 @@ with torch.no_grad():
         results.extend(texts)
     
     return results</code></pre>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
                     </div>
                 </div>
             </div>
@@ -427,289 +685,498 @@ with torch.no_grad():
         <!-- METHODOLOGY TAB -->
         <section id="methodology" class="tab-content">
             <div class="container">
-                <h2>Scoring Methodology</h2>
-                <p class="section-desc">How models are ranked using multi-criteria decision analysis</p>
+                <h2>Metodologi Penilaian</h2>
+                <p class="section-desc">Bagaimana model diperingkat menggunakan analisis keputusan multi-kriteria</p>
 
                 <div class="methodology-intro">
-                    <p>This analysis uses a <strong>6-factor weighted scoring system</strong> to objectively rank model configurations across multiple performance dimensions.</p>
+                    <p>Analisis ini menggunakan <strong>sistem penilaian berbobot 6-faktor</strong> untuk secara objektif mengevaluasi konfigurasi model di berbagai dimensi performa.</p>
                 </div>
 
-                <h3>Evaluation Criteria & Weights</h3>
+                <h3>Kriteria Evaluasi & Bobot</h3>
                 <div class="criteria-grid">
                     <div class="criterion">
                         <div class="weight-badge">25%</div>
                         <h4>Throughput</h4>
-                        <p class="metric-def">Tokens per second</p>
-                        <p class="metric-ratio">Range: 0.21 - 231.73 tok/s</p>
-                        <p class="metric-explain">Primary efficiency indicator for inference speed</p>
+                        <p class="metric-def">Token per detik</p>
+                        <p class="metric-ratio">Jangkauan: 0.21 - 231.73 tok/s</p>
+                        <p class="metric-explain">Indikator efisiensi utama untuk kecepatan inferensi</p>
                     </div>
 
                     <div class="criterion">
                         <div class="weight-badge">20%</div>
                         <h4>ROUGE-1</h4>
-                        <p class="metric-def">Unigram overlap (semantic)</p>
-                        <p class="metric-ratio">Range: 0.309 - 0.618</p>
-                        <p class="metric-explain">Measures lexical-level quality</p>
+                        <p class="metric-def">Tumpang tindih unigram (semantik)</p>
+                        <p class="metric-ratio">Jangkauan: 0.309 - 0.618</p>
+                        <p class="metric-explain">Mengukur kualitas tingkat leksikal</p>
                     </div>
 
                     <div class="criterion">
                         <div class="weight-badge">15%</div>
                         <h4>BLEU</h4>
-                        <p class="metric-def">N-gram precision</p>
-                        <p class="metric-ratio">Range: 0.089 - 0.180</p>
-                        <p class="metric-explain">Phrase-level accuracy</p>
+                        <p class="metric-def">Presisi N-gram</p>
+                        <p class="metric-ratio">Jangkauan: 0.089 - 0.180</p>
+                        <p class="metric-explain">Akurasi tingkat frasa</p>
                     </div>
 
                     <div class="criterion">
                         <div class="weight-badge">15%</div>
                         <h4>ROUGE-L</h4>
-                        <p class="metric-def">Longest common subsequence</p>
-                        <p class="metric-ratio">Range: 0.249 - 0.409</p>
-                        <p class="metric-explain">Structural coherence</p>
+                        <p class="metric-def">Subsequence umum terpanjang</p>
+                        <p class="metric-ratio">Jangkauan: 0.249 - 0.409</p>
+                        <p class="metric-explain">Koherensi struktural</p>
                     </div>
 
                     <div class="criterion">
                         <div class="weight-badge">15%</div>
                         <h4>VRAM</h4>
-                        <p class="metric-def">Memory footprint</p>
-                        <p class="metric-ratio">Range: 0.3 - 14.0 GB</p>
-                        <p class="metric-explain">Deployment feasibility</p>
+                        <p class="metric-def">Jejak memori</p>
+                        <p class="metric-ratio">Jangkauan: 0.3 - 14.0 GB</p>
+                        <p class="metric-explain">Kelayakan implementasi</p>
                     </div>
 
                     <div class="criterion">
                         <div class="weight-badge">10%</div>
                         <h4>Residency</h4>
-                        <p class="metric-def">GPU memory fit</p>
-                        <p class="metric-ratio">0.0 or 1.0 (binary)</p>
-                        <p class="metric-explain">No CPU offloading</p>
+                        <p class="metric-def">Kecocokan memori GPU</p>
+                        <p class="metric-ratio">0.0 atau 1.0 (biner)</p>
+                        <p class="metric-explain">Tidak ada offloading CPU</p>
                     </div>
                 </div>
 
                 <div class="formula-box">
-                    <h3>Composite Score Formula</h3>
+                    <h3>Formula Skor Komposit</h3>
                     <div class="formula">
-                        <p>Composite Score = </p>
+                        <p>Skor Komposit = </p>
                         <p>(0.25 × Throughput) +</p>
                         <p>(0.20 × ROUGE-1) +</p>
                         <p>(0.15 × BLEU) +</p>
                         <p>(0.15 × ROUGE-L) +</p>
                         <p>(0.15 × VRAM) +</p>
                         <p>(0.10 × Residency)</p>
-                        <p class="formula-range">Range: 0.0 (worst) to 1.0 (best)</p>
+                        <p class="formula-range">Jangkauan: 0.0 (terburuk) hingga 1.0 (terbaik)</p>
                     </div>
                 </div>
 
-                <h3>Normalization Method</h3>
+                <h3>Metode Normalisasi</h3>
                 <div class="info-box">
-                    <p><strong>All metrics normalized to [0, 1] using min-max scaling:</strong></p>
+                    <p><strong>Semua metrik dinormalisasi ke [0, 1] menggunakan penskalaan min-max:</strong></p>
                     <code class="code-inline">norm_value = (value - min) / (max - min)</code>
-                    <p>This ensures fair comparison across different scales without assuming ideal values.</p>
+                    <p>Ini memastikan perbandingan yang adil di berbagai skala tanpa mengasumsikan nilai ideal.</p>
                 </div>
 
-                <h3>Weight Justification</h3>
+                <h3>Justifikasi Bobot</h3>
                 <div class="weight-explanation">
                     <div class="weight-group">
-                        <h4>Efficiency (40%): Throughput (25%) + VRAM (15%)</h4>
-                        <p>Deployment feasibility and operational efficiency are primary concerns</p>
+                        <h4>Efisiensi (40%): Throughput (25%) + VRAM (15%)</h4>
+                        <p>Kelayakan implementasi dan efisiensi operasional adalah kekhawatiran utama</p>
                     </div>
                     <div class="weight-group">
-                        <h4>Quality (50%): ROUGE-1 (20%) + BLEU (15%) + ROUGE-L (15%)</h4>
-                        <p>Output quality is critical for user satisfaction and trust</p>
+                        <h4>Kualitas (50%): ROUGE-1 (20%) + BLEU (15%) + ROUGE-L (15%)</h4>
+                        <p>Kualitas output sangat penting untuk kepuasan dan kepercayaan pengguna</p>
                     </div>
                     <div class="weight-group">
-                        <h4>Consistency (10%): Residency (10%)</h4>
-                        <p>Full GPU residency ensures latency predictability</p>
+                        <h4>Konsistensi (10%): Residency (10%)</h4>
+                        <p>Residensi GPU penuh memastikan prediktabilitas latensi</p>
                     </div>
                 </div>
 
-                <h3>Adapt Weights for Your Priorities</h3>
-                <div class="weight-variants">
-                    <div class="variant">
-                        <h4>🚀 Speed-First (Real-time applications)</h4>
-                        <div class="weights-list">
-                            <span class="weight-item">Throughput: 30%</span>
-                            <span class="weight-item">Quality: 40%</span>
-                            <span class="weight-item">Memory: 20%</span>
-                            <span class="weight-item">Residency: 10%</span>
-                        </div>
-                    </div>
-
-                    <div class="variant">
-                        <h4>✨ Quality-First (Premium content)</h4>
-                        <div class="weights-list">
-                            <span class="weight-item">Quality: 60%</span>
-                            <span class="weight-item">Throughput: 20%</span>
-                            <span class="weight-item">Memory: 10%</span>
-                            <span class="weight-item">Residency: 10%</span>
-                        </div>
-                    </div>
-
-                    <div class="variant">
-                        <h4>💰 Cost-First (Budget conscious)</h4>
-                        <div class="weights-list">
-                            <span class="weight-item">Throughput: 35%</span>
-                            <span class="weight-item">Memory: 25%</span>
-                            <span class="weight-item">Quality: 30%</span>
-                            <span class="weight-item">Residency: 10%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Data Validation</h3>
+                <h3>Validasi Data</h3>
                 <ul class="check-list">
-                    <li><span class="check">✓</span> All values extracted from journal (no interpolation)</li>
-                    <li><span class="check">✓</span> Normalized values in [0, 1] range</li>
-                    <li><span class="check">✓</span> No missing data points</li>
-                    <li><span class="check">✓</span> Weight sum = 1.0</li>
-                    <li><span class="check">✓</span> Sensitivity analysis passed</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Semua nilai diekstrak dari jurnal (tidak ada interpolasi)</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Nilai normal dalam jangkauan [0, 1]</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Tidak ada titik data yang hilang</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Jumlah bobot = 1.0</li>
+                    <li><span class="check"><i class="fas fa-check"></i></span> Analisis sensitivitas lulus</li>
                 </ul>
+            </div>
+        </section>
+
+        <!-- GLOSSARY TAB -->
+        <section id="glossary" class="tab-content">
+            <div class="container">
+                <h2>Kunci Istilah & Konsep</h2>
+                <p class="section-desc">Penjelasan detail tentang istilah-istilah penting dalam analisis kuantisasi LLM</p>
+
+                <div class="glossary-grid">
+                    <div class="glossary-item">
+                        <h3>INT8 (8-bit Integer)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Representasi angka menggunakan 8 bit, dapat menyimpan nilai dari -128 hingga 127</p>
+                        <div class="detail-box">
+                            <h4>Keuntungan:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> 50% lebih kecil dari FP16 (16-bit)</li>
+                                <li><i class="fas fa-check"></i> 3-50x lebih cepat saat inferensi</li>
+                                <li><i class="fas fa-check"></i> Cocok untuk deployment edge dan mobile</li>
+                                <li><i class="fas fa-check"></i> Mengurangi bandwidth I/O</li>
+                            </ul>
+                            <h4>Kerugian:</h4>
+                            <ul>
+                                <li><i class="fas fa-circle-xmark"></i> Presisi lebih rendah (sering menyebabkan 10-20% penurunan kualitas)</li>
+                                <li><i class="fas fa-circle-xmark"></i> Perlu kalibrasi/quantization-aware training</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Kuantisasi (Quantization)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Proses mengkonversi nilai numerik yang presisi tinggi menjadi nilai yang lebih rendah</p>
+                        <div class="detail-box">
+                            <h4>Analogi Sederhana:</h4>
+                            <p>Seperti membulatkan 3.7 menjadi 4. Kehilangan presisi tetapi lebih sederhana dan cepat.</p>
+                            <h4>Tipe Kuantisasi:</h4>
+                            <ul>
+                                <li><strong>Post-Training Quantization:</strong> Kuantisasi setelah model selesai dilatih</li>
+                                <li><strong>Quantization-Aware Training:</strong> Melatih model dengan mempertimbangkan kuantisasi</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>FP16 (16-bit Float)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Representasi bilangan desimal menggunakan 16 bit dengan presisi menengah</p>
+                        <div class="detail-box">
+                            <h4>Karakteristik:</h4>
+                            <ul>
+                                <li>Presisi lebih baik dari INT8 (4x)</li>
+                                <li>100% dari kualitas FP32, tetapi 2x lebih cepat</li>
+                                <li>Standar untuk training deep learning modern</li>
+                            </ul>
+                            <h4>Dalam Analisis Ini:</h4>
+                            <p>Kami membandingkan INT8 (dikuantisasi) vs FP16 (presisi penuh) untuk menunjukkan trade-off kecepatan vs kualitas.</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>LLM (Large Language Model)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Model neural network yang dilatih pada miliaran token teks</p>
+                        <div class="detail-box">
+                            <h4>Contoh dalam Penelitian:</h4>
+                            <ul>
+                                <li><strong>GPT-2:</strong> 1.5 miliar parameter (kecil, cepat)</li>
+                                <li><strong>Qwen1.5-1.8B:</strong> 1.8 miliar parameter (seimbang)</li>
+                                <li><strong>LLaMA-2-7B:</strong> 7 miliar parameter (besar, berkualitas)</li>
+                            </ul>
+                            <h4>Parameter = komponen model yang belajar dari data</h4>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Throughput</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Jumlah token yang dapat dihasilkan per detik</p>
+                        <div class="detail-box">
+                            <h4>Rumus:</h4>
+                            <p>Throughput = Jumlah Token / Waktu (detik)</p>
+                            <h4>Contoh:</h4>
+                            <ul>
+                                <li>GPT-2 INT8: 127.36 tok/s = CEPAT <i class="fas fa-bolt"></i></li>
+                                <li>LLaMA-2-7B INT8: 9.61 tok/s = LAMBAT <i class="fas fa-snail"></i></li>
+                            </ul>
+                            <h4>Aplikasi Praktis:</h4>
+                            <p>Chat real-time membutuhkan ≥50 tok/s untuk respons yang responsif</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>BLEU (Bilingual Evaluation Understudy)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Metrik yang mengukur kesamaan n-gram antara output dan referensi</p>
+                        <div class="detail-box">
+                            <h4>Penjelasan Teknis:</h4>
+                            <ul>
+                                <li>Membandingkan frasa tepat (1-word, 2-word, 3-word, 4-word)</li>
+                                <li>Jangkauan: 0 (berbeda total) hingga 1 (identik)</li>
+                                <li>KETAT: Pencocokan kata demi kata</li>
+                            </ul>
+                            <h4>Kapan Gunakan:</h4>
+                            <p>Terjemahan, generasi kode, tugas yang membutuhkan presisi tinggi</p>
+                            <h4>Dalam Data Kami:</h4>
+                            <p>Jangkauan 0.089 - 0.180 (BLEU cenderung rendah untuk LLM)</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>ROUGE-1 (Recall-Oriented Understudy for Gisting Evaluation)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Metrik yang mengukur tumpang tindih uniram (kata-kata individu)</p>
+                        <div class="detail-box">
+                            <h4>Penjelasan Sederhana:</h4>
+                            <ul>
+                                <li>Menghitung berapa banyak kata yang sama muncul di output dan referensi</li>
+                                <li>SANTAI: Tidak peduli urutan kata, hanya kehadiran</li>
+                                <li>Jangkauan: 0 - 1</li>
+                            </ul>
+                            <h4>Contoh:</h4>
+                            <p>Output: "kucing duduk di rumah"<br>Referensi: "rumah tempat kucing duduk"<br>ROUGE-1 TINGGI <i class="fas fa-check"></i> (semua kata ada)</p>
+                            <h4>Dalam Data Kami:</h4>
+                            <p>Jangkauan 0.309 - 0.618 (lebih tinggi dari BLEU, lebih masuk akal)</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>ROUGE-L (Longest Common Subsequence)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Metrik yang mengukur subsequence umum terpanjang antara output dan referensi</p>
+                        <div class="detail-box">
+                            <h4>Apa yang Diukur:</h4>
+                            <ul>
+                                <li>Urutan kata (structure)</li>
+                                <li>Koherensi kalimat</li>
+                                <li>Aliran logis</li>
+                            </ul>
+                            <h4>Contoh:</h4>
+                            <p>Output: "saya PERGI ke SEKOLAH"<br>Referensi: "SAYA pergi KE sekolah jam 8"<br>Subsequence umum: "SAYA pergi KE sekolah" <i class="fas fa-arrow-right"></i> ROUGE-L TINGGI</p>
+                            <h4>Dalam Data Kami:</h4>
+                            <p>Jangkauan 0.249 - 0.409 (mengukur struktur output)</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>GPU (Graphics Processing Unit)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Prosesor khusus untuk komputasi paralel masif</p>
+                        <div class="detail-box">
+                            <h4>GPU dalam Penelitian:</h4>
+                            <ul>
+                                <li><strong>RTX4070:</strong> Entry-level profesional (~$600)</li>
+                                <li><strong>RTX4080:</strong> High-end consumer (~$1200) - DIREKOMENDASIKAN</li>
+                                <li><strong>RTX4090:</strong> Flagship ($1600+)</li>
+                            </ul>
+                            <h4>Perbedaan dalam Analisis:</h4>
+                            <ul>
+                                <li>RTX4080: 127.36 tok/s (GPT-2 INT8) <i class="fas fa-bolt"></i><i class="fas fa-bolt"></i><i class="fas fa-bolt"></i></li>
+                                <li>RTX4070: 14.74 tok/s (GPT-2 INT8) <i class="fas fa-bolt"></i> (10x lebih lambat)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>VRAM (Video RAM)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Memori khusus GPU untuk menyimpan model dan data</p>
+                        <div class="detail-box">
+                            <h4>Keterbatasan:</h4>
+                            <ul>
+                                <li>RTX4070: 12 GB VRAM</li>
+                                <li>RTX4080: 16 GB VRAM</li>
+                                <li>Setiap model membutuhkan ruang tertentu</li>
+                            </ul>
+                            <h4>Dalam Analisis Kami:</h4>
+                            <ul>
+                                <li>GPT-2 INT8: 0.5 GB (sangat efisien)</li>
+                                <li>LLaMA-2-7B INT8: 5-7 GB (lumayan)</li>
+                            </ul>
+                            <h4>Trade-off Kuantisasi:</h4>
+                            <p>INT8 memotong VRAM 50% dibanding FP16 → Lebih banyak concurrency</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Residency (GPU Residency)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Kondisi ketika seluruh model tinggal di GPU tanpa offloading ke CPU</p>
+                        <div class="detail-box">
+                            <h4>Dua Skenario:</h4>
+                            <ul>
+                                <li><strong>Residency = 1 (Baik):</strong> Model sepenuhnya di GPU, latency konsisten</li>
+                                <li><strong>Residency = 0 (Buruk):</strong> Model di-split antara GPU & CPU, latency unpredictable</li>
+                            </ul>
+                            <h4>Dalam Analisis Kami:</h4>
+                            <p>Semua konfigurasi memiliki residency penuh (model fit di GPU)</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Latensi (Latency)</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Waktu yang diperlukan untuk mendapatkan output pertama atau keseluruhan</p>
+                        <div class="detail-box">
+                            <h4>Dua Jenis:</h4>
+                            <ul>
+                                <li><strong>Time-to-first-token:</strong> Waktu token pertama (ideally &lt;100ms)</li>
+                                <li><strong>Total generation time:</strong> Waktu untuk seluruh output</li>
+                            </ul>
+                            <h4>Contoh:</h4>
+                            <p>GPT-2 INT8 di RTX4080: ~8ms per token = 127 token/detik</p>
+                            <h4>Rule of Thumb:</h4>
+                            <ul>
+                                <li>&lt;100ms: Sangat responsif (chat real-time)</li>
+                                <li>100-500ms: Responsif (aplikasi interaktif)</li>
+                                <li>&gt;500ms: Batch/offline OK</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Transformer</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Arsitektur neural network yang mendominasi NLP modern</p>
+                        <div class="detail-box">
+                            <h4>Komponen Utama:</h4>
+                            <ul>
+                                <li><strong>Attention:</strong> Mekanisme fokus pada token penting</li>
+                                <li><strong>Feed-Forward:</strong> Transformasi non-linear</li>
+                                <li><strong>Embedding:</strong> Konversi kata ke vektor numerik</li>
+                            </ul>
+                            <h4>Mengapa Penting:</h4>
+                            <p>Transformer adalah akar dari GPT, LLaMA, Qwen, dan hampir semua LLM modern</p>
+                        </div>
+                    </div>
+
+                    <div class="glossary-item">
+                        <h3>Token</h3>
+                        <p class="definition"><strong>Apa itu:</strong> Unit terkecil teks yang dipahami model (biasanya 1-2 karakter)</p>
+                        <div class="detail-box">
+                            <h4>Contoh Tokenisasi:</h4>
+                            <p>"Hello world" →<br>
+                            ["Hello", " ", "world"] atau<br>
+                            ["He", "llo", " ", "wor", "ld"]<br>
+                            (Tergantung tokenizer)</p>
+                            <h4>Dalam Analisis Kami:</h4>
+                            <p>Throughput diukur dalam token/detik (bukan karakter/detik)</p>
+                            <h4>Perkiraan Konversi:</h4>
+                            <p>1 kata ≈ 1.3 token, 1 halaman ≈ 300 token</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- FAQ TAB -->
         <section id="faq" class="tab-content">
             <div class="container">
-                <h2>Frequently Asked Questions</h2>
+                <h2>Pertanyaan yang Sering Diajukan</h2>
 
                 <div class="faq-search">
-                    <input type="text" id="faqSearch" placeholder="Search FAQ...">
+                    <input type="text" id="faqSearch" placeholder="Cari FAQ...">
                 </div>
 
-                <div class="faq-list">
+                <div class="faq-list" id="faqList">
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Why INT8 instead of FP16?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Mengapa INT8 bukan FP16?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p>INT8 (8-bit) is 2x smaller than FP16 (16-bit), providing:</p>
+                            <p>INT8 (8-bit) 2x lebih kecil dari FP16 (16-bit), menyediakan:</p>
                             <ul>
-                                <li>3-50x speedup in inference</li>
-                                <li>50% memory reduction</li>
-                                <li>Only 10-20% quality loss</li>
-                                <li>Excellent trade-off for most applications</li>
+                                <li>Percepatan 3-50x dalam inferensi</li>
+                                <li>Pengurangan memori 50%</li>
+                                <li>Hanya 10-20% kehilangan kualitas</li>
+                                <li>Trade-off yang sangat baik untuk sebagian besar aplikasi</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Will my results match the paper exactly?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Apakah hasil saya akan cocok dengan makalah persis?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p>Yes! All data comes directly from Oprea & Bâra (2026). Same data + same calculations = same results (within ±0.5% due to floating point differences).</p>
+                            <p>Ya! Semua data berasal langsung dari Oprea & Bâra (2026). Data yang sama + perhitungan yang sama = hasil yang sama (dalam ±0.5% karena perbedaan floating point).</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Which GPU should I buy?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>GPU mana yang harus saya beli?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
                             <ul>
-                                <li><strong>Consumer (Development):</strong> RTX4070 (~$600) - Good for learning</li>
-                                <li><strong>Professional (Production):</strong> RTX4080 (~$1200) - Best value</li>
-                                <li><strong>Enterprise (Scaling):</strong> RTX4090 or multi-GPU - Maximum throughput</li>
+                                <li><strong>Konsumen (Pengembangan):</strong> RTX4070 (~$600) - Baik untuk belajar</li>
+                                <li><strong>Profesional (Produksi):</strong> RTX4080 (~$1200) - Nilai terbaik</li>
+                                <li><strong>Enterprise (Penskalaan):</strong> RTX4090 atau multi-GPU - Throughput maksimal</li>
                             </ul>
-                            <p>All support INT8 quantization efficiently.</p>
+                            <p>Semua mendukung kuantisasi INT8 secara efisien.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Can I run this on CPU?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Dapatkah saya menjalankan ini pada CPU?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p>Yes, but <strong>very slowly</strong> (100-1000x slower than GPU). For production, always use GPU. CPU is acceptable only for:
+                            <p>Ya, tetapi <strong>sangat lambat</strong> (100-1000x lebih lambat dari GPU). Untuk produksi, selalu gunakan GPU. CPU dapat diterima hanya untuk:
                             <ul>
-                                <li>Testing/development</li>
-                                <li>Small models (GPT-2)</li>
-                                <li>Batch processing with flexible latency</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            How accurate are the quality metrics?
-                            <span class="faq-toggle">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <ul>
-                                <li><strong>BLEU:</strong> Strict (exact phrase matches) - Use for technical content</li>
-                                <li><strong>ROUGE-1:</strong> Moderate (content overlap) - Good for general text</li>
-                                <li><strong>ROUGE-L:</strong> Moderate (structure) - Validates coherence</li>
-                                <li><strong>Combined:</strong> 80-95% quality retention typical with INT8</li>
+                                <li>Pengujian/pengembangan</li>
+                                <li>Model kecil (GPT-2)</li>
+                                <li>Pemrosesan batch dengan latensi fleksibel</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Can I modify the scoring weights?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Seberapa akurat metrik kualitas?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p><strong>Absolutely!</strong> See the Methodology tab for weight variants:</p>
                             <ul>
-                                <li>Speed-First: Maximize throughput</li>
-                                <li>Quality-First: Maximize output quality</li>
-                                <li>Cost-First: Minimize expenses</li>
+                                <li><strong>BLEU:</strong> Ketat (kecocokan frasa tepat) - Gunakan untuk konten teknis</li>
+                                <li><strong>ROUGE-1:</strong> Sedang (tumpang tindih konten) - Bagus untuk teks umum</li>
+                                <li><strong>ROUGE-L:</strong> Sedang (struktur) - Memvalidasi koherensi</li>
+                                <li><strong>Gabungan:</strong> Retensi kualitas 80-95% tipikal dengan INT8</li>
                             </ul>
-                            <p>Adjust weights to match your priorities.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            What about newer models (Llama 3, Mistral)?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Dapatkah saya mengubah bobot penilaian?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p>This analysis is based on Oprea & Bâra (2026) research, which used specific models available at that time. The <strong>methodology is applicable</strong> to any LLM:</p>
+                            <p><strong>Tentu saja!</strong> Lihat tab Metodologi untuk varian bobot:</p>
                             <ul>
-                                <li>Load model with BitsAndBytes</li>
-                                <li>Run inference</li>
-                                <li>Calculate quality metrics</li>
-                                <li>Score using same formula</li>
+                                <li>Prioritas Kecepatan: Maksimalkan throughput</li>
+                                <li>Prioritas Kualitas: Maksimalkan kualitas output</li>
+                                <li>Prioritas Biaya: Minimalkan pengeluaran</li>
                             </ul>
-                            <p>Expected results similar (3-50x speedup, 80-95% quality).</p>
+                            <p>Sesuaikan bobot untuk mencocokkan prioritas Anda.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            Is there latency guarantee?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Bagaimana dengan model yang lebih baru (Llama 3, Mistral)?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p>Latency depends on several factors:</p>
+                            <p>Analisis ini didasarkan pada penelitian Oprea & Bâra (2026), yang menggunakan model spesifik yang tersedia saat itu. <strong>Metodologi dapat diterapkan</strong> ke LLM apa pun:</p>
                             <ul>
-                                <li><strong>GPU:</strong> RTX4080 3-10x faster than RTX4070</li>
-                                <li><strong>Model Size:</strong> GPT-2 (0.1B) fastest, LLaMA-2-7B slower</li>
-                                <li><strong>Output Length:</strong> Longer outputs = more latency</li>
-                                <li><strong>Batch Size:</strong> Larger batches = better throughput</li>
+                                <li>Muat model dengan BitsAndBytes</li>
+                                <li>Jalankan inferensi</li>
+                                <li>Hitung metrik kualitas</li>
+                                <li>Skor menggunakan formula yang sama</li>
                             </ul>
-                            <p>Typical ranges: 50-500ms first token, 100-1000 tokens/sec total.</p>
+                            <p>Hasil yang diharapkan serupa (percepatan 3-50x, kualitas 80-95%).</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            How do I choose between models?
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Apakah ada jaminan latensi?</span>
                             <span class="faq-toggle">+</span>
                         </button>
                         <div class="faq-answer">
-                            <p><strong>Use the interactive Use Cases selector above!</strong> Or follow this flowchart:</p>
+                            <p>Latensi bergantung pada beberapa faktor:</p>
                             <ul>
-                                <li><strong>Need speed (&lt;100ms)?</strong> → GPT-2 INT8</li>
-                                <li><strong>Need code (87% valid)?</strong> → Qwen INT8</li>
-                                <li><strong>Need best quality?</strong> → LLaMA-2-7B INT8</li>
-                                <li><strong>Need small memory?</strong> → GPT-2 or Qwen INT8</li>
-                                <li><strong>Need balance?</strong> → Qwen INT8</li>
+                                <li><strong>GPU:</strong> RTX4080 3-10x lebih cepat dari RTX4070</li>
+                                <li><strong>Ukuran Model:</strong> GPT-2 (0.1B) tercepat, LLaMA-2-7B lebih lambat</li>
+                                <li><strong>Panjang Output:</strong> Output lebih panjang = lebih banyak latensi</li>
+                                <li><strong>Ukuran Batch:</strong> Batch lebih besar = throughput lebih baik</li>
+                            </ul>
+                            <p>Jangkauan tipikal: 50-500ms token pertama, 100-1000 token/detik total.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" onclick="toggleFAQ(this)">
+                            <span>Bagaimana saya memilih di antara model?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>Gunakan pemilih Kasus Penggunaan interaktif di atas!</strong> Atau ikuti bagan alur ini:</p>
+                            <ul>
+                                <li><strong>Butuh kecepatan (&lt;100ms)?</strong> → GPT-2 INT8</li>
+                                <li><strong>Butuh kode (87% valid)?</strong> → Qwen INT8</li>
+                                <li><strong>Butuh kualitas terbaik?</strong> → LLaMA-2-7B INT8</li>
+                                <li><strong>Butuh memori kecil?</strong> → GPT-2 atau Qwen INT8</li>
+                                <li><strong>Butuh keseimbangan?</strong> → Qwen INT8</li>
                             </ul>
                         </div>
                     </div>
@@ -720,9 +1187,9 @@ with torch.no_grad():
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 LLM Quantization Benchmark Analysis</p>
-            <p>Based on: Oprea, S.-V., & Bâra, A. (2026). <em>Quantized Transformers in Practice</em></p>
-            <p>Data integrity verified | All sources from journal | No modifications</p>
+            <p>&copy; 2026 Analisis Benchmark Kuantisasi LLM</p>
+            <p>Berdasarkan: Oprea, S.-V., & Bâra, A. (2026). <em>Kuantisasi Transformer dalam Praktik</em></p>
+            <p>Integritas data diverifikasi | Semua sumber dari jurnal | Tidak ada modifikasi</p>
         </div>
     </footer>
 

@@ -481,7 +481,21 @@ function initializeFAQ() {
 }
 
 function toggleFAQ(button) {
-    const answer = button.nextElementSibling;
+    // Find the parent faq-item
+    const faqItem = button.closest('.faq-item');
+    if (!faqItem) {
+        console.error('FAQ item not found');
+        return;
+    }
+    
+    // Find the answer div within this faq-item
+    const answer = faqItem.querySelector('.faq-answer');
+    if (!answer) {
+        console.error('FAQ answer not found');
+        return;
+    }
+    
+    // Toggle open class
     button.classList.toggle('open');
     answer.classList.toggle('open');
 }
@@ -493,6 +507,14 @@ function toggleFAQ(button) {
 document.addEventListener('DOMContentLoaded', () => {
     initializeTabs();
     populateTable(modelsData);
+    
+    // Initialize FAQ accordion - direct attach to buttons
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleFAQ(this);
+        });
+    });
     
     // Set first tab active
     const firstTab = document.querySelector('.nav-link');
