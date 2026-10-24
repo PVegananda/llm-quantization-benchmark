@@ -109,7 +109,7 @@ const useCases = {
         }
     },
     batch: {
-        title: "📊 Batch Processing",
+        title: "Batch Processing",
         recommendation: "GPT-2 INT8 on RTX4080",
         score: "0.7234",
         throughput: "127.36 tok/s",

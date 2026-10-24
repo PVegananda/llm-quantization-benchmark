@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">LLM Quantization Benchmark</title>
+  <desc id="desc">A geometric mark representing a model compressed into efficient layers.</desc>
+  <rect width="96" height="96" rx="20" fill="#0f172a"/>
+  <path d="M24 27h48v12H24zM24 45h31v12H24zM24 63h48v12H24z" fill="#38bdf8"/>
+  <circle cx="67" cy="51" r="9" fill="#a78bfa"/>
+  <path d="M67 42v18M58 51h18" stroke="#0f172a" stroke-width="3"/>
+</svg>

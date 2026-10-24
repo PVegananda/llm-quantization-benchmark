@@ -1,7 +1,4 @@
-"""
-app.py — Streamlit demo untuk LLM Quantization Benchmark
-Jalankan: streamlit run app/app.py
-"""
+"""Interactive Streamlit dashboard for the LLM Quantization Benchmark."""
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,7 +11,7 @@ st.set_page_config(
 )
 
 st.title("LLM Quantization Benchmark")
-st.caption("Replikasi jurnal: Oprea & Bâra (2026) — Quantized Transformers in Practice")
+st.caption("FP16 and INT8 evaluation based on Oprea & Bâra (2026)")
 
 # ── Sidebar ──
 st.sidebar.header("Filter")

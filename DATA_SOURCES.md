@@ -13,7 +13,7 @@
 
 ---
 
-## 📋 Journal Tables Used
+## Journal Tables Used
 
 ### Table 3: Timing Metrics
 **Title:** "Comparison of the output (time and tokens/s) of the three models: GPT2, LLaMA2 and QWEN1.5 on RTX4070 vs. RTX4080 Laptop GPUs (FP16 vs. INT8)"
@@ -62,7 +62,7 @@
 
 ---
 
-## 📊 Notebook-by-Notebook Data Mapping
+## Notebook-by-Notebook Data Mapping
 
 ### Notebook 01: Data Preparation
 **Purpose:** Establish context and load benchmark configuration  

@@ -8,7 +8,7 @@ from pathlib import Path
 # Page config
 st.set_page_config(
     page_title="LLM Quantization Benchmark",
-    page_icon="🚀",
+    page_icon="Q",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -43,7 +43,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title and intro
-st.markdown("# 🎯 LLM Quantization Benchmark Analysis")
+st.markdown("# LLM Quantization Benchmark Analysis")
 st.markdown("### INT8 Quantization Performance Analysis on Consumer Hardware")
 st.markdown("Based on Oprea & Bâra (2026) Research")
 
@@ -57,20 +57,20 @@ def load_data():
 try:
     results_df = load_data()
 except FileNotFoundError:
-    st.error("❌ Error: Could not find results_summary.csv")
+    st.error("Error: Could not find results_summary.csv")
     st.stop()
 
 # Sidebar
-st.sidebar.title("📋 Navigation")
+st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Select View:",
-    ["📊 Dashboard", "🏆 Model Rankings", "📈 Detailed Metrics", "💡 Use Case Recommendations", "ℹ️ About"]
+    ["Dashboard", "Model Rankings", "Detailed Metrics", "Use Case Recommendations", "About"]
 )
 
 # ============================================================================
 # PAGE 1: DASHBOARD
 # ============================================================================
-if page == "📊 Dashboard":
+if page == "Dashboard":
     st.markdown("---")
     
     # Key metrics
@@ -78,7 +78,7 @@ if page == "📊 Dashboard":
     
     with col1:
         st.metric(
-            "📊 Total Models",
+            "Total Models",
             len(results_df),
             "configurations"
         )
@@ -94,7 +94,7 @@ if page == "📊 Dashboard":
     with col3:
         best_score = results_df['Composite_Score'].max()
         st.metric(
-            "🏆 Best Score",
+            "Best Score",
             f"{best_score:.4f}",
             "composite"
         )
@@ -159,7 +159,7 @@ if page == "📊 Dashboard":
     st.markdown("---")
     
     # Metrics radar chart
-    st.subheader("🎯 Performance Radar - Best vs Runner-up")
+    st.subheader("Performance Radar - Best vs Runner-up")
     
     best_model = results_df.loc[results_df['Composite_Score'].idxmax()]
     runner_up = results_df.loc[results_df['Composite_Score'].nlargest(2).index[1]]
@@ -212,9 +212,9 @@ if page == "📊 Dashboard":
 # ============================================================================
 # PAGE 2: MODEL RANKINGS
 # ============================================================================
-elif page == "🏆 Model Rankings":
+elif page == "Model Rankings":
     st.markdown("---")
-    st.subheader("🏆 Complete Model Rankings (by Composite Score)")
+    st.subheader("Complete Model Rankings (by Composite Score)")
     
     # Add ranking
     ranked_df = results_df.sort_values('Composite_Score', ascending=False).reset_index(drop=True)
@@ -289,7 +289,7 @@ elif page == "🏆 Model Rankings":
 # ============================================================================
 # PAGE 3: DETAILED METRICS
 # ============================================================================
-elif page == "📈 Detailed Metrics":
+elif page == "Detailed Metrics":
     st.markdown("---")
     
     # Metric selector
@@ -309,7 +309,7 @@ elif page == "📈 Detailed Metrics":
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.subheader(f"📊 {selected_metric} Distribution")
+        st.subheader(f"{selected_metric} Distribution")
         
         fig = px.box(
             results_df,
@@ -323,7 +323,7 @@ elif page == "📈 Detailed Metrics":
         st.plotly_chart(fig, use_container_width=True)
     
     with col2:
-        st.subheader("📈 Statistics")
+        st.subheader("Statistics")
         
         col_data = results_df[metric_key]
         
@@ -370,7 +370,7 @@ elif page == "📈 Detailed Metrics":
 # ============================================================================
 # PAGE 4: USE CASE RECOMMENDATIONS
 # ============================================================================
-elif page == "💡 Use Case Recommendations":
+elif page == "Use Case Recommendations":
     st.markdown("---")
     
     use_cases = {
@@ -473,7 +473,7 @@ elif page == "💡 Use Case Recommendations":
     }
     
     # Use case selector
-    st.subheader("🎯 Select Use Case Scenario")
+    st.subheader("Select Use Case Scenario")
     selected_use_case = st.selectbox(
         "Choose your deployment scenario:",
         list(use_cases.keys()),
@@ -495,7 +495,7 @@ elif page == "💡 Use Case Recommendations":
             st.write(req)
     
     with col2:
-        st.markdown("### 🏆 Recommended Configuration")
+        st.markdown("### Recommended Configuration")
         st.markdown(f"**{uc['recommended_model']}**")
         
         # Get the recommended model data
@@ -517,12 +517,12 @@ elif page == "💡 Use Case Recommendations":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("### 📊 Key Metrics")
+        st.markdown("### Key Metrics")
         for metric_name, metric_val in uc['metrics'].items():
             st.write(f"**{metric_name}:** {metric_val}")
     
     with col2:
-        st.markdown("### 🚀 Expected Performance")
+        st.markdown("### Expected Performance")
         for perf_name, perf_val in uc['performance'].items():
             st.write(f"**{perf_name}:** {perf_val}")
     
@@ -618,7 +618,7 @@ summary = tokenizer.decode(outputs[0])
 # ============================================================================
 # PAGE 5: ABOUT
 # ============================================================================
-elif page == "ℹ️ About":
+elif page == "About":
     st.markdown("---")
     
     st.markdown("## 📖 About This Analysis")
@@ -627,7 +627,7 @@ elif page == "ℹ️ About":
     This dashboard presents a comprehensive analysis of INT8 quantization on Large Language Models (LLMs),
     based on the research by **Oprea & Bâra (2026)**.
     
-    ### 🎯 Research Objectives
+    ### Research Objectives
     
     1. **Speed vs Quality Trade-offs**: Measure the impact of INT8 quantization on model performance
     2. **Multi-Architecture Evaluation**: Compare performance across GPT-2, Qwen, and LLaMA-2
@@ -635,7 +635,7 @@ elif page == "ℹ️ About":
     4. **Production-Ready Metrics**: Identify relevant metrics for real-world deployment
     5. **Model Selection Guidance**: Provide recommendations for different use cases
     
-    ### 📊 Evaluation Metrics
+    ### Evaluation Metrics
     
     | Metric | Weight | Description |
     |--------|--------|-------------|
@@ -696,7 +696,7 @@ elif page == "ℹ️ About":
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("### 📊 Dataset Summary")
+        st.markdown("### Dataset Summary")
         st.write(f"**Total Configurations:** {len(results_df)}")
         st.write(f"**Models Tested:** {results_df['Model'].nunique()}")
         st.write(f"**GPU Types:** {results_df['GPU'].nunique()}")
@@ -706,7 +706,7 @@ elif page == "ℹ️ About":
         st.markdown("### 🔗 Links")
         st.write("[📄 Full Paper & Analysis](https://github.com)")
         st.write("[⚙️ Project Repository](https://github.com)")
-        st.write("[📊 Cloudflare Pages Demo](https://pasyahvegananda-benchmark-kuantisasi-llm.pages.dev)")
+        st.write("[Cloudflare Pages Demo](https://pasyahvegananda-benchmark-kuantisasi-llm.pages.dev)")
         st.write("[🤗 Hugging Face Spaces](https://huggingface.co/spaces)")
 
 # Footer
@@ -714,6 +714,6 @@ st.markdown("---")
 st.markdown("""
     <div style='text-align: center; padding: 20px; color: #666;'>
         <p>LLM Quantization Benchmark Analysis | Based on Oprea & Bâra (2026) | Built with Streamlit</p>
-        <p>📊 Interactive Dashboard | 🚀 Deployed on Hugging Face Spaces</p>
+        <p>Interactive Dashboard | Deployed on Hugging Face Spaces</p>
     </div>
 """, unsafe_allow_html=True)
