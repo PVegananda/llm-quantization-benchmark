@@ -86,7 +86,7 @@ if page == "Dashboard":
     with col2:
         max_throughput = results_df['Throughput_tok_s'].max()
         st.metric(
-            "⚡ Max Throughput",
+            "Max Throughput",
             f"{max_throughput:.1f}",
             "tok/s"
         )
@@ -102,7 +102,7 @@ if page == "Dashboard":
     with col4:
         avg_bleu = results_df['BLEU'].mean()
         st.metric(
-            "📝 Avg BLEU",
+            "Avg BLEU",
             f"{avg_bleu:.4f}",
             "quality metric"
         )
@@ -110,7 +110,7 @@ if page == "Dashboard":
     with col5:
         avg_rouge = results_df['ROUGE_1'].mean()
         st.metric(
-            "📖 Avg ROUGE-1",
+            "Avg ROUGE-1",
             f"{avg_rouge:.4f}",
             "semantic"
         )
@@ -118,7 +118,7 @@ if page == "Dashboard":
     with col6:
         models_count = results_df['Model'].nunique()
         st.metric(
-            "🤖 Models Tested",
+            "Models Tested",
             models_count,
             "architectures"
         )
@@ -129,7 +129,7 @@ if page == "Dashboard":
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("🏅 Composite Scores by Configuration")
+        st.subheader("Composite Scores by Configuration")
         fig = px.bar(
             results_df.sort_values('Composite_Score', ascending=True),
             x='Composite_Score',
@@ -143,7 +143,7 @@ if page == "Dashboard":
         st.plotly_chart(fig, use_container_width=True)
     
     with col2:
-        st.subheader("⚡ Throughput Comparison")
+        st.subheader("Throughput Comparison")
         fig = px.bar(
             results_df.sort_values('Throughput_tok_s', ascending=True),
             x='Throughput_tok_s',
@@ -253,7 +253,7 @@ elif page == "Model Rankings":
     with col1:
         st.markdown("""
             <div class="use-case-box">
-                <h3>🏅 #1 Best Overall</h3>
+                <h3>#1 Best Overall</h3>
                 <p><strong>{}</strong></p>
                 <p>{}</p>
                 <p style="font-size: 1.5em; color: #667eea;"><strong>{:.4f}</strong></p>
@@ -266,7 +266,7 @@ elif page == "Model Rankings":
     with col2:
         st.markdown("""
             <div class="use-case-box">
-                <h3>🥈 #2 Runner-up</h3>
+                <h3>#2 Runner-up</h3>
                 <p><strong>{}</strong></p>
                 <p>{}</p>
                 <p style="font-size: 1.5em; color: #667eea;"><strong>{:.4f}</strong></p>
@@ -279,7 +279,7 @@ elif page == "Model Rankings":
     with col3:
         st.markdown("""
             <div class="use-case-box">
-                <h3>🥉 #3 Third Place</h3>
+                <h3>#3 Third Place</h3>
                 <p><strong>{}</strong></p>
                 <p>{}</p>
                 <p style="font-size: 1.5em; color: #667eea;"><strong>{:.4f}</strong></p>
@@ -336,7 +336,7 @@ elif page == "Detailed Metrics":
     st.markdown("---")
     
     # Comparison by Model
-    st.subheader("🔄 Performance by Model (All Configurations)")
+    st.subheader("Performance by Model (All Configurations)")
     
     metric_by_model = results_df.groupby('Model')[metric_key].agg(['mean', 'min', 'max', 'count'])
     metric_by_model = metric_by_model.round(4)
@@ -346,7 +346,7 @@ elif page == "Detailed Metrics":
     st.markdown("---")
     
     # GPU Comparison
-    st.subheader("⚙️ Performance by GPU")
+    st.subheader("Performance by GPU")
     
     metric_by_gpu = results_df.groupby('GPU')[metric_key].agg(['mean', 'min', 'max', 'count'])
     metric_by_gpu = metric_by_gpu.round(4)
@@ -375,12 +375,12 @@ elif page == "Use Case Recommendations":
     
     use_cases = {
         "Real-Time Chat Application": {
-            "icon": "💬",
+            "icon": "Text",
             "requirements": [
-                "✅ Sub-100ms first-token latency",
-                "✅ High throughput for concurrent users",
-                "✅ Quality acceptable but not critical",
-                "✅ Cost-sensitive"
+                "Sub-100ms first-token latency",
+                "High throughput for concurrent users",
+                "Quality acceptable but not critical",
+                "Cost-sensitive"
             ],
             "recommended_model": "GPT-2 INT8 on RTX4080",
             "metrics": {
@@ -399,12 +399,12 @@ elif page == "Use Case Recommendations":
             "use_cases": ["Customer Support Chatbot", "Real-time Assistance", "Interactive Agents"]
         },
         "Code Generation API": {
-            "icon": "💻",
+            "icon": "Code",
             "requirements": [
-                "✅ Syntactic correctness critical (87%+ valid code)",
-                "✅ Semantic preservation important",
-                "✅ 1-5 second latency acceptable",
-                "✅ Cost-effective deployment"
+                "Syntactic correctness critical (87%+ valid code)",
+                "Semantic preservation important",
+                "1-5 second latency acceptable",
+                "Cost-effective deployment"
             ],
             "recommended_model": "Qwen1.5-1.8B-Chat INT8 on RTX4080",
             "metrics": {
@@ -423,12 +423,12 @@ elif page == "Use Case Recommendations":
             "use_cases": ["GitHub Copilot Alternative", "IDE Integration", "Code Review Tools"]
         },
         "Document Summarization": {
-            "icon": "📄",
+            "icon": "Document",
             "requirements": [
-                "✅ Highest quality retention",
-                "✅ Semantic accuracy critical",
-                "✅ Batch processing acceptable",
-                "✅ Comprehensive information preservation"
+                "Highest quality retention",
+                "Semantic accuracy critical",
+                "Batch processing acceptable",
+                "Comprehensive information preservation"
             ],
             "recommended_model": "LLaMA-2-7B-Chat INT8 on RTX4080",
             "metrics": {
@@ -447,12 +447,12 @@ elif page == "Use Case Recommendations":
             "use_cases": ["Research Paper Summarization", "Document Processing", "Enterprise Solutions"]
         },
         "Mobile/Edge Deployment": {
-            "icon": "📱",
+            "icon": "Edge",
             "requirements": [
-                "✅ Minimal memory footprint (< 1GB VRAM)",
-                "✅ Energy efficiency critical",
-                "✅ Acceptable latency (1-2 seconds)",
-                "✅ On-device processing preferred"
+                "Minimal memory footprint (< 1GB VRAM)",
+                "Energy efficiency critical",
+                "Acceptable latency (1-2 seconds)",
+                "On-device processing preferred"
             ],
             "recommended_model": "Qwen1.5-1.8B-Chat INT8 on RTX4070",
             "metrics": {
@@ -490,7 +490,7 @@ elif page == "Use Case Recommendations":
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        st.markdown("### 📋 Requirements")
+        st.markdown("### Requirements")
         for req in uc['requirements']:
             st.write(req)
     
@@ -527,13 +527,13 @@ elif page == "Use Case Recommendations":
             st.write(f"**{perf_name}:** {perf_val}")
     
     with col3:
-        st.markdown("### 💼 Typical Use Cases")
+        st.markdown("### Typical Use Cases")
         for use in uc['use_cases']:
             st.write(f"• {use}")
     
     # Configuration code
     st.markdown("---")
-    st.markdown("### 🔧 Configuration Example")
+    st.markdown("### Configuration Example")
     
     if "GPT-2" in uc['recommended_model']:
         config_code = """
@@ -621,7 +621,7 @@ summary = tokenizer.decode(outputs[0])
 elif page == "About":
     st.markdown("---")
     
-    st.markdown("## 📖 About This Analysis")
+    st.markdown("## About This Analysis")
     
     st.markdown("""
     This dashboard presents a comprehensive analysis of INT8 quantization on Large Language Models (LLMs),
@@ -646,18 +646,18 @@ elif page == "About":
     | **VRAM** | 15% | Memory usage - resource efficiency |
     | **GPU Residency** | 10% | Model in-memory status - availability |
     
-    ### 🤖 Models Tested
+    ### Models Tested
     
     - **GPT-2** - Smaller, lightweight model
     - **Qwen1.5-1.8B-Chat** - Efficient chat model
     - **LLaMA-2-7B-Chat** - Larger, higher quality model
     
-    ### ⚙️ Hardware Configurations
+    ### Hardware Configurations
     
     - **RTX4080** - High-end consumer GPU (16GB VRAM)
     - **RTX4070** - Mid-range consumer GPU (12GB VRAM)
     
-    ### 🔬 Methodology
+    ### Methodology
     
     **Multi-Criteria Scoring Framework:**
     - Max-min normalization to [0, 1] scale
@@ -665,21 +665,20 @@ elif page == "About":
     - Transparency and reproducibility focused
     - Bias-minimized approach
     
-    ### 📁 Data Sources
+    ### Data Sources
     
     - Table 3: Timing metrics and throughput
     - Table 6: Single prompt BLEU/ROUGE scores
     - Table 7-11: Model vs human reference comparisons
     - Table 13: Code generation metrics
     
-    ### 🎓 Key Findings
+    ### Key Findings
+    - INT8 quantization can improve memory efficiency and throughput.
+    - Model selection depends heavily on use case requirements.
+    - Hardware efficiency enables edge deployment.
+    - Cost-performance trade-offs are measurable.
     
-    ✅ INT8 quantization maintains 95%+ quality while improving speed  
-    ✅ Model selection depends heavily on use case requirements  
-    ✅ Hardware efficiency enables edge deployment  
-    ✅ Cost-performance ratio highly favorable for production  
-    
-    ### 📚 References
+    ### References
     
     - Oprea & Bâra (2026). INT8 Quantization Analysis for LLMs
     - Research conducted: 2025-2026
@@ -703,11 +702,11 @@ elif page == "About":
         st.write(f"**Avg Composite Score:** {results_df['Composite_Score'].mean():.4f}")
     
     with col2:
-        st.markdown("### 🔗 Links")
-        st.write("[📄 Full Paper & Analysis](https://github.com)")
-        st.write("[⚙️ Project Repository](https://github.com)")
+        st.markdown("### Links")
+        st.write("[Full Paper & Analysis](https://doi.org/10.32604/cmc.2026.078985)")
+        st.write("[Project Repository](https://github.com/PVegananda/llm-quantization-benchmark)")
         st.write("[Cloudflare Pages Demo](https://pasyahvegananda-benchmark-kuantisasi-llm.pages.dev)")
-        st.write("[🤗 Hugging Face Spaces](https://huggingface.co/spaces)")
+        st.write("[Hugging Face Spaces](https://huggingface.co/spaces)")
 
 # Footer
 st.markdown("---")
