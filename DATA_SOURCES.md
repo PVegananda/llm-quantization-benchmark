@@ -1,15 +1,15 @@
-# 📚 DATA SOURCES & VERIFICATION DOCUMENT
+# DATA SOURCES & VERIFICATION DOCUMENT
 
 ## Paper Citation
 **Oprea, S.-V., & Bâra, A. (2026).** "Quantized Transformers in Practice: Benchmarking Full- and Low-Precision LLMs across Two Processors." *Computers, Materials & Continua*, 87(3), 91. https://doi.org/10.32604/cmc.2026.078985
 
 ---
 
-## 🔍 Data Integrity Guarantee
+## Data Integrity Guarantee
 
-✅ **All data in this workflow is sourced DIRECTLY from the journal.**  
-✅ **Zero modifications, zero bias, zero interpolations.**  
-✅ **Every number is traceable to specific journal tables.**  
+- **All data in this workflow is sourced directly from the journal.**  
+- **Zero modifications, zero bias, zero interpolations.**  
+- **Every number is traceable to specific journal tables.**  
 
 ---
 
@@ -142,7 +142,7 @@ Total Score = sum(normalized_metric × weight)
 
 ---
 
-## 🔬 Verification Checklist
+## Verification Checklist
 
 - [x] All timing data from Table 3 (no estimation)
 - [x] All quality metrics from Tables 9, 13 (no calculation artifacts)
@@ -156,7 +156,7 @@ Total Score = sum(normalized_metric × weight)
 
 ---
 
-## 📌 How to Cite This Work
+## How to Cite This Work
 
 If you use this analysis, cite both the original paper AND this workflow:
 
@@ -186,7 +186,7 @@ If you use this analysis, cite both the original paper AND this workflow:
 
 ---
 
-## 📞 Questions About Data?
+## Questions About Data
 
 If you have questions about where specific values come from:
 1. Check the notebook cell containing the value
@@ -198,5 +198,5 @@ If you have questions about where specific values come from:
 ---
 
 **Last Updated:** May 26, 2026  
-**Data Verification Status:** ✅ COMPLETE—ALL VALUES FROM JOURNAL  
-**Bias Assessment:** ✅ NONE DETECTED—TRANSPARENT METHODOLOGY
+**Data Verification Status:** Complete—all values are sourced from the journal.  
+**Bias Assessment:** None detected; methodology is transparent.
